@@ -39,7 +39,6 @@ class SendSticker:
         sticker: Union[str, BinaryIO],
         emoji: str = "",
         caption: str = "",
-        parse_mode: Optional["enums.ParseMode"] = None,
         caption_entities: List["types.MessageEntity"] = None,
         disable_notification: bool = None,
         message_thread_id: int = None,
