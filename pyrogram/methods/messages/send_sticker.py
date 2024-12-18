@@ -37,7 +37,10 @@ class SendSticker:
         self: "pyrogram.Client",
         chat_id: Union[int, str],
         sticker: Union[str, BinaryIO],
-        emoji: str = None,
+        emoji: str = "",
+        caption: str = "",
+        parse_mode: Optional["enums.ParseMode"] = None,
+        caption_entities: List["types.MessageEntity"] = None,
         disable_notification: bool = None,
         message_thread_id: int = None,
         business_connection_id: str = None,
@@ -79,7 +82,17 @@ class SendSticker:
                 pass a binary file-like object with its attribute ".name" set for in-memory uploads.
 
             emoji (``str``, *optional*):
-                Emoji associated with the sticker; only for just uploaded stickers
+                Emoji associated with this sticker.
+                
+            caption (``str``, *optional*):
+                Sticker caption, 0-1024 characters.
+                
+            parse_mode (:obj:`~pyrogram.enums.ParseMode`, *optional*):
+                By default, texts are parsed using both Markdown and HTML styles.
+                You can combine both syntaxes together.
+                
+            caption_entities (List of :obj:`~pyrogram.types.MessageEntity`):
+                List of special entities that appear in the caption, which can be specified instead of *parse_mode*.
 
             disable_notification (``bool``, *optional*):
                 Sends the message silently.
@@ -195,7 +208,7 @@ class SendSticker:
                             raw.types.DocumentAttributeSticker(
                                 alt=emoji,
                                 stickerset=raw.types.InputStickerSetEmpty()
-                            )
+                            ),
                         ]
                     )
                 elif re.match("^https?://", sticker):
@@ -227,7 +240,7 @@ class SendSticker:
                         allow_paid_floodskip=allow_paid_broadcast,
                         effect=message_effect_id,
                         reply_markup=await reply_markup.write(self) if reply_markup else None,
-                        message=""
+                        **await utils.parse_text_entities(self, caption, parse_mode, caption_entities)
                     )
                     if business_connection_id is not None:
                         r = await self.invoke(
