@@ -18,18 +18,18 @@
 #  along with Pyrofork.  If not, see <http://www.gnu.org/licenses/>.
 
 from __future__ import annotations
-
+from collections.abc import Iterable
 import pyrogram
 
 
 class RemoveErrorHandler:
     def remove_error_handler(
-        self: pyrogram.Client, error: Exception | tuple[Exception] = Exception
+        self: pyrogram.Client, error: type[Exception] | Iterable[type[Exception]] = Exception
     ):
         """Remove a previously-registered error handler. (using exception classes)
 
         Parameters:
-            error (``Exception``):
+            error (``Exception`` | Iterable of ``Exception``, *optional*):
                 The error(s) for handlers to be removed.
         """
         for handler in self.dispatcher.error_handlers:
