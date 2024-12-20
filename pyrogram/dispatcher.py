@@ -23,7 +23,8 @@ import logging
 from collections import OrderedDict
 
 import pyrogram
-from pyrogram import errors, types, utils, raw
+from pyrogram import errors, raw, types, utils
+from hydrogram.handlers.handler import Handler
 from pyrogram.handlers import (
   BotBusinessConnectHandler,
   BotBusinessMessageHandler,
