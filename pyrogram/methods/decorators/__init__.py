@@ -28,7 +28,6 @@ from .on_deleted_bot_business_messages import OnDeletedBotBusinessMessages
 from .on_disconnect import OnDisconnect
 from .on_edited_message import OnEditedMessage
 from .on_edited_bot_business_message import OnEditedBotBusinessMessage
-from .on_error import OnError
 from .on_inline_query import OnInlineQuery
 from .on_message import OnMessage
 from .on_poll import OnPoll
@@ -48,7 +47,6 @@ class Decorators(
     OnBotBusinessMessage,
     OnEditedMessage,
     OnEditedBotBusinessMessage,
-    OnError,
     OnDeletedMessages,
     OnDeletedBotBusinessMessages,
     OnCallbackQuery,
