@@ -32,7 +32,7 @@ class StopPoll:
         reply_markup: "types.InlineKeyboardMarkup" = None,
         business_connection_id: str = None
     ) -> "types.Poll":
-        """Stop a poll which was sent by user/bot.
+        """Stop a poll which was sent by you.
 
         Stopped polls can't be reopened and nobody will be able to vote in it anymore.
 
