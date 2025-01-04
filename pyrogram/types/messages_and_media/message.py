@@ -906,12 +906,9 @@ class Message(Object, Update):
             elif isinstance(action, raw.types.MessageActionGiftCode):
                 gift_code = types.GiftCode._parse(client, action, chats)
                 service_type = enums.MessageServiceType.GIFT_CODE
-            elif isinstance(action, raw.types.MessageActionStarGift):
-                user_gift = await types.UserGift._parse_action(client, message, users)
-                service_type = enums.MessageServiceType.USER_GIFT
             elif isinstance(action, (raw.types.MessageActionStarGift, raw.types.MessageActionStarGiftUnique)):
                 star_gift = await types.StarGift._parse_action(client, message, users)
-                service_type = enums.MessageServiceType.STAR_GIFT
+                service_type = enums.MessageServiceType.UserGift
             elif isinstance(action, raw.types.MessageActionScreenshotTaken):
                 screenshot_taken = types.ScreenshotTaken()
                 service_type = enums.MessageServiceType.SCREENSHOT_TAKEN

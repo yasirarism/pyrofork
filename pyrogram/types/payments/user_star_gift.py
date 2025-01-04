@@ -30,7 +30,7 @@ class UserStarGift(Object):
     """A user star gift.
 
     Parameters:
-        date (``datetime``):
+        date (:py:obj:`~datetime.datetime`, *optional*):
             Date when the star gift was received.
 
         star_gift (:obj:`~pyrogram.types.StarGift`, *optional*):
