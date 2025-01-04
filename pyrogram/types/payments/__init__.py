@@ -31,10 +31,11 @@ from .payment_info import PaymentInfo
 from .payment_refunded import PaymentRefunded
 from .purchased_paid_media import PurchasedPaidMedia
 from .star_gift import StarGift
-from .star_gift_attribute import StarGiftAttribute
 from .stars_status import StarsStatus
 from .stars_transaction import StarsTransaction
 from .successful_payment import SuccessfulPayment
+from .user_gift import UserGift
+from .user_star_gift import UserStarGift
 
 __all__ = [
     "ExtendedMediaPreview",
@@ -51,8 +52,9 @@ __all__ = [
     "PaymentRefunded",
     "PurchasedPaidMedia",
     "StarGift",
-    "StarGiftAttribute",
     "StarsStatus",
     "StarsTransaction",
     "SuccessfulPayment",
+    "UserGift",
+    "UserStarGift"
 ]

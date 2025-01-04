@@ -415,6 +415,9 @@ class Message(Object, Update):
             Service message: gift code information.
             Contains a `Telegram Premium giftcode link <https://core.telegram.org/api/links#premium-giftcode-links>`_.
 
+        user_gift (:obj:`~pyrogram.types.UserGift`, *optional*):
+            Service message: Represents a gift received by a user.
+
         star_gift (:obj:`~pyrogram.types.StarGift`, *optional*):
             Service message: star gift information.
 
@@ -498,6 +501,7 @@ class Message(Object, Update):
         chat_wallpaper_updated: "types.ChatWallpaper" = None,
         contact_registered: "types.ContactRegistered" = None,
         gift_code: "types.GiftCode" = None,
+        user_gift: "types.UserGift" = None,
         star_gift: "types.StarGift" = None,
         screenshot_taken: "types.ScreenshotTaken" = None,
         invoice: "types.Invoice" = None,
@@ -619,6 +623,7 @@ class Message(Object, Update):
         self.chat_wallpaper_updated = chat_wallpaper_updated
         self.contact_registered = contact_registered
         self.gift_code = gift_code
+        self.user_gift = user_gift
         self.star_gift = star_gift
         self.screenshot_taken = screenshot_taken
         self.invoice = invoice
@@ -783,6 +788,7 @@ class Message(Object, Update):
             chat_wallpaper_updated = None
             contact_registered = None
             gift_code = None
+            user_gift = None
             star_gift = None
             screenshot_taken = None
 
@@ -900,8 +906,9 @@ class Message(Object, Update):
             elif isinstance(action, raw.types.MessageActionGiftCode):
                 gift_code = types.GiftCode._parse(client, action, chats)
                 service_type = enums.MessageServiceType.GIFT_CODE
+            elif isinstance(action, (raw.types.MessageActionStarGift, raw.types.MessageActionStarGiftUnique)):
                 star_gift = await types.StarGift._parse_action(client, message, users)
-                service_type = enums.MessageServiceType.STAR_GIFT
+                service_type = enums.MessageServiceType.UserGift
             elif isinstance(action, raw.types.MessageActionScreenshotTaken):
                 screenshot_taken = types.ScreenshotTaken()
                 service_type = enums.MessageServiceType.SCREENSHOT_TAKEN
@@ -942,6 +949,7 @@ class Message(Object, Update):
                 giveaway_launched=giveaway_launched,
                 giveaway_result=giveaway_result,
                 successful_payment=successful_payment,
+                user_gift=user_gift,
                 star_gift=star_gift,
                 payment_refunded=payment_refunded,
                 boosts_applied=boosts_applied,
