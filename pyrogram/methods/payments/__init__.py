@@ -19,7 +19,7 @@
 
 from .apply_gift_code import ApplyGiftCode
 from .check_giftcode import CheckGiftCode
-from .convert_star_gift import ConvertStarGift
+from .convert_gift import ConvertGift
 from .create_invoice_link import CreateInvoiceLink
 from .get_payment_form import GetPaymentForm
 from .get_available_gifts import GetAvailableGifts
@@ -41,7 +41,7 @@ from .upgrade_gift import UpgradeGift
 class Payments(
     ApplyGiftCode,
     CheckGiftCode,
-    ConvertStarGift,
+    ConvertGift,
     CreateInvoiceLink,
     GetPaymentForm,
     GetAvailableGifts,
