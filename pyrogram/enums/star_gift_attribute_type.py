@@ -31,3 +31,6 @@ class StarGiftAttributeType(AutoName):
     
     BACKDROP = raw.types.StarGiftAttributeBackdrop
     "Backdrop attribute"
+
+    ORIGINAL_DETAILS = raw.types.StarGiftAttributeOriginalDetails
+    "Original details attribute"
