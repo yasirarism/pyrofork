@@ -24,8 +24,8 @@ import pyrogram
 from pyrogram import raw
 
 
-class ConvertStarGift:
-    async def convert_star_gift(
+class ConvertGift:
+    async def convert_gift(
         self: "pyrogram.Client",
         message_id: int
     ) -> bool:
@@ -44,7 +44,7 @@ class ConvertStarGift:
             .. code-block:: python
 
                 # Convert gift
-                app.convert_star_gift(message_id=123)
+                app.convert_gift(message_id=123)
         """
         r = await self.invoke(
             raw.functions.payments.ConvertStarGift(
