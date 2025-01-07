@@ -22,8 +22,8 @@ import pyrogram
 from pyrogram import raw, types
 
 
-class GetUserStarGifts:
-    async def get_user_star_gifts(
+class GetUserGifts:
+    async def get_user_gifts(
         self: "pyrogram.Client",
         chat_id: Union[int, str],
         limit: int = 0,
@@ -46,12 +46,12 @@ class GetUserStarGifts:
                 Maximum amount of star gifts to be returned.
 
         Returns:
-            ``Generator``: A generator yielding :obj:`~pyrogram.types.UserStarGift` objects.
+            ``Generator``: A generator yielding :obj:`~pyrogram.types.Gift` objects.
 
         Example:
             .. code-block:: python
 
-                async for gift in app.get_user_star_gifts(chat_id):
+                async for gift in app.get_user_gifts(chat_id):
                     print(gift)
         """
         peer = await self.resolve_peer(chat_id)
@@ -76,7 +76,7 @@ class GetUserStarGifts:
             users = {u.id: u for u in r.users}
 
             user_star_gifts = [
-                await types.UserStarGift._parse(self, gift, users)
+                await types.Gift._parse_user(self, gift, users)
                 for gift in r.gifts
             ]
 
