@@ -20,8 +20,8 @@ import pyrogram
 from pyrogram import raw
 
 
-class ShowStarGift:
-    async def show_star_gift(
+class ShowGift:
+    async def show_gift(
         self: "pyrogram.Client",
         message_id: int
     ) -> bool:
@@ -40,7 +40,7 @@ class ShowStarGift:
             .. code-block:: python
 
                 # Show gift
-                app.show_star_gift(message_id=123)
+                app.show_gift(message_id=123)
         """
         r = await self.invoke(
             raw.functions.payments.SaveStarGift(
