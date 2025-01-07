@@ -19,27 +19,27 @@
 from typing import Union
 
 import pyrogram
-from pyrogram import raw
+from pyrogram import raw, errors
 
 
-class TransferStarGift:
-    async def transfer_star_gift(
+class TransferGift:
+    async def transfer_gift(
         self: "pyrogram.Client",
-        chat_id: Union[int, str],
         message_id: int,
+        to_chat_id: Union[int, str],
     ) -> bool:
         """Transfer star gift to another user.
 
         .. include:: /_includes/usable-by/users.rst
 
         Parameters:
-            chat_id (``int`` | ``str``):
+            message_id (``int``):
+                Unique message identifier of star gift.
+
+            to_chat_id (``int`` | ``str``):
                 Unique identifier (int) or username (str) of the target chat you want to transfer the star gift to.
                 For your personal cloud (Saved Messages) you can simply use "me" or "self".
                 For a contact that exists in your Telegram address book you can use his phone number (str).
-
-            message_id (``int``):
-                Unique message identifier of star gift.
 
         Returns:
             ``bool``: On success, True is returned.
@@ -47,19 +47,38 @@ class TransferStarGift:
         Example:
             .. code-block:: python
 
-                # Show gift
-                app.transfer_star_gift(chat_id=123, message_id=123)
+                # Transfer gift to another user
+                app.transfer_gift(message_id=123, to_chat_id=123)
         """
-        peer = await self.resolve_peer(chat_id)
+        peer = await self.resolve_peer(to_chat_id)
 
         if not isinstance(peer, (raw.types.InputPeerUser, raw.types.InputPeerSelf)):
             raise ValueError("chat_id must belong to a user.")
 
-        await self.invoke(
-            raw.functions.payments.TransferStarGift(
-                msg_id=message_id,
-                keep_original_details=keep_details
+        try:
+            await self.invoke(
+                raw.functions.payments.TransferStarGift(
+                    msg_id=message_id,
+                    to_id=peer
+                )
             )
-        )
+        except errors.PaymentRequired:
+            invoice = raw.types.InputInvoiceStarGiftTransfer(
+                msg_id=message_id,
+                to_id=peer
+            )
 
-        return True # TODO:
+            form = await self.invoke(
+                raw.functions.payments.GetPaymentForm(
+                    invoice=invoice
+                )
+            )
+
+            await self.invoke(
+                raw.functions.payments.SendStarsForm(
+                    form_id=form.form_id,
+                    invoice=invoice
+                )
+            )
+
+        return True
