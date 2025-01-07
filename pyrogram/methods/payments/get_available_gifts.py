@@ -23,24 +23,24 @@ import pyrogram
 from pyrogram import raw, types
 
 
-class GetStarGifts:
-    async def get_star_gifts(
+class GetAvailableGifts:
+    async def get_available_gifts(
         self: "pyrogram.Client",
-    ) -> List["types.StarGift"]:
+    ) -> List["types.Gift"]:
         """Get all available star gifts to send.
 
         .. include:: /_includes/usable-by/users.rst
 
         Returns:
-            List of :obj:`~pyrogram.types.StarGift`: On success, a list of star gifts is returned.
+            List of :obj:`~pyrogram.types.Gift`: On success, a list of star gifts is returned.
 
         Example:
             .. code-block:: python
 
-                app.get_star_gifts()
+                app.get_available_gifts()
         """
         r = await self.invoke(
             raw.functions.payments.GetStarGifts(hash=0)
         )
 
-        return types.List([await types.StarGift._parse(self, gift) for gift in r.gifts])
+        return types.List([await types.Gift._parse(self, gift) for gift in r.gifts])
