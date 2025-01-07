@@ -18,20 +18,10 @@
 
 from .answer_pre_checkout_query import AnswerPreCheckoutQuery
 from .get_business_connection import GetBusinessConnection
-from .get_available_gifts import GetAvailableGifts
-from .get_user_gifts import GetUserGifts
-from .sell_gift import SellGift
-from .send_gift import SendGift
-from .toggle_gift_is_saved import ToggleGiftIsSaved
 
 
 class TelegramBusiness(
     AnswerPreCheckoutQuery,
     GetBusinessConnection,
-    GetAvailableGifts,
-    GetUserGifts,
-    SellGift,
-    SendGift,
-    ToggleGiftIsSaved,
 ):
     pass
