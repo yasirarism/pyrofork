@@ -25,8 +25,8 @@ from pyrogram import raw
 log = logging.getLogger(__name__)
 
 
-class GetUserStarGiftsCount:
-    async def get_user_star_gifts_count(
+class GetUserGiftsCount:
+    async def get_user_gifts_count(
         self: "pyrogram.Client",
         chat_id: Union[int, str]
     ) -> int:
@@ -46,7 +46,7 @@ class GetUserStarGiftsCount:
         Example:
             .. code-block:: python
 
-                await app.get_user_star_gifts_count(chat_id)
+                await app.get_user_gifts_count(chat_id)
         """
         peer = await self.resolve_peer(chat_id)
 
