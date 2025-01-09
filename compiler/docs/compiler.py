@@ -780,7 +780,6 @@ def pyrogram_api():
             Message.react
             Message.translate
             Message.wait_for_click
-            UserGift.toggle
         """,
         chat="""
         Chat
