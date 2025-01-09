@@ -463,7 +463,8 @@ class Chat(Object):
             parsed_chat.birthday = types.Birthday._parse(getattr(full_user, "birthday", None))
             parsed_chat.gifts_count = getattr(full_user, "stargifts_count", None)
             personal_chat_id = getattr(full_user, "personal_channel_id", None)
-            if personal_chat_id not None:
+            
+            if personal_chat_id is not None:
                 personal_chat = await client.invoke(
                     raw.functions.channels.GetChannels(
                         id=[await client.resolve_peer(utils.get_channel_id(personal_chat_id))]
