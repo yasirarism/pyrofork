@@ -502,6 +502,7 @@ def pyrogram_api():
             BotInfo
             ChatColor
             CollectibleItemInfo
+            BotVerification
         """,
         messages_media="""
         Messages & Media
