@@ -63,6 +63,7 @@ from .video_chat_started import VideoChatStarted
 
 __all__ = [
     "Birthday",
+    "BotVerification",
     "BusinessInfo",
     "BusinessMessage",
     "BusinessRecipients",
