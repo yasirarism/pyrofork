@@ -62,13 +62,13 @@ class Gift(Object):
             Attributes of the star gift.
             For unique gifts only.
 
-        date (``datetime``, *optional*):
+        date (:py:obj:`~datetime.datetime`, *optional*):
             Date when the star gift was received.
 
-        first_sale_date (``datetime``, *optional*):
+        first_sale_date (:py:obj:`~datetime.datetime`, *optional*):
             Date when the star gift was first purchased.
 
-        last_sale_date (``datetime``, *optional*):
+        last_sale_date (:py:obj:`~datetime.datetime`, *optional*):
             Date when the star gift was last purchased.
 
         from_user (:obj:`~pyrogram.types.User`, *optional*):
@@ -97,7 +97,7 @@ class Gift(Object):
         can_upgrade (``bool``, *optional*):
             True, if the gift can be upgraded.
 
-        can_export_at (``datetime``, *optional*):
+        can_export_at (:py:obj:`~datetime.datetime`, *optional*):
             Date when the gift can be exported via blockchain.
 
         is_limited (``bool``, *optional*):
