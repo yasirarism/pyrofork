@@ -42,7 +42,7 @@ class GiftAttribute(Object):
             Rarity of the attribute in permilles.
             For example, 15 means 1.5%. So only 1.5% of such collectibles have this attribute.
 
-        date (``datetime``, *optional*):
+        date (:py:obj:`~datetime.datetime`, *optional*):
             Date when the gift was received.
             Available only if the original details are available.
 
