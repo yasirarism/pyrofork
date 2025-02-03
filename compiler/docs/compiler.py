@@ -861,6 +861,7 @@ def pyrogram_api():
             Gift.convert
             Gift.upgrade
             Gift.transfer
+            Gift.wear
         """,
         callback_query="""
         Callback Query
