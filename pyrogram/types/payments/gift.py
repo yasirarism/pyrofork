@@ -488,3 +488,30 @@ class Gift(Object):
             message_id=self.message_id,
             to_chat_id=to_chat_id
     )
+
+    async def wear(self) -> bool:
+        """Bound method *wear* of :obj:`~pyrogram.types.Gift`.
+       
+        .. note::
+        
+            This works for upgraded gifts only.
+       
+        Use as a shortcut for:
+        
+        .. code-block:: python
+        
+            await client.set_emoji_status(types.EmojiStatus(gift_id=123))
+        
+        Example:
+            .. code-block:: python
+            
+                await star_gift.wear()
+                
+        Returns:
+            ``bool``: On success, True is returned.
+        """
+        return self._client.set_emoji_status(
+            emoji_status=types.EmojiStatus(
+                gift_id=self.id
+            )
+        )
