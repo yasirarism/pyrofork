@@ -56,7 +56,7 @@ class TranscribedAudio:
         self.trial_remains_until_date = trial_remains_until_date
 
     @staticmethod
-    def _parse(transcribe_result: "raw.types.messages.TranscribedAudio") -> "TranscribeAudio":
+    def _parse(client, transcribe_result: "raw.types.messages.TranscribedAudio") -> "TranscribeAudio":
         return TranscribedAudio(
             transcription_id=transcribe_result.transcription_id,
             text=transcribe_result.text,
