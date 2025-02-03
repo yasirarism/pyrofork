@@ -63,5 +63,6 @@ class GetUpgradedGift:
         )
 
         users = {i.id: i for i in r.users}
+        chats = {i.id: i for i in r.chats}
 
-        return await types.Gift._parse_unique(self, r.gift, users)
+        return await types.Gift._parse_unique(self, r.gift, users, chats)
