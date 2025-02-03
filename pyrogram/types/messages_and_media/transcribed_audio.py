@@ -20,7 +20,7 @@
 from pyrogram import  raw
 
 
-class TranscribedAudio:
+class TranscribedAudio(Object):
     """Transcribes the audio of a voice message.
     
     Parameters:
