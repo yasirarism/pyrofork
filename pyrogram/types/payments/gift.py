@@ -18,12 +18,10 @@
 #  along with Pyrofork.  If not, see <http://www.gnu.org/licenses/>.
 
 from datetime import datetime
-from typing import Optional, List, Union
+from typing import List, Optional, Union
 
 import pyrogram
-from pyrogram import raw
-from pyrogram import types
-from pyrogram import utils
+from pyrogram import raw, types, utils
 from ..object import Object
 
 
@@ -73,6 +71,9 @@ class Gift(Object):
 
         from_user (:obj:`~pyrogram.types.User`, *optional*):
             User who sent the star gift.
+
+        owner_name (``str``, *optional*):
+            Name of the user who received the star gift.
 
         price (``int``, *optional*):
             Price of this gift in stars.
@@ -142,6 +143,7 @@ class Gift(Object):
         first_sale_date: Optional[datetime] = None,
         last_sale_date: Optional[datetime] = None,
         from_user: Optional["types.User"] = None,
+        owner_name: Optional[str] = None,
         price: Optional[int] = None,
         convert_price: Optional[int] = None,
         upgrade_price: Optional[int] = None,
@@ -175,6 +177,7 @@ class Gift(Object):
         self.first_sale_date = first_sale_date
         self.last_sale_date = last_sale_date
         self.from_user = from_user
+        self.owner_name = owner_name
         self.price = price
         self.convert_price = convert_price
         self.upgrade_price = upgrade_price
@@ -236,6 +239,7 @@ class Gift(Object):
             ) or None,
             available_amount=getattr(star_gift, "availability_issued", None),
             total_amount=getattr(star_gift, "availability_total", None),
+            owner_name=getattr(star_gift, "owner_name", None),
             is_upgraded=True,
             client=client
         )
