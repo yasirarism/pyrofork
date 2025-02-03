@@ -49,4 +49,4 @@ class TranscribeAudio:
             )
         )
 
-        return types.TranscribedAudio._parse(self, r)
+        return types.TranscribedAudio._parse(r)
