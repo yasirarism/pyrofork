@@ -222,7 +222,7 @@ class SendPaidMedia:
                                 media=raw.types.InputMediaDocumentExternal(
                                     url=i.media,
                                     video_cover=await self.save_file(i.cover),
-                                    video_timestamp=i.start_timestamp
+                                    video_timestamp=i.start_timestamp,
                                     spoiler=i.has_spoiler
                                 )
                             )
