@@ -18,13 +18,10 @@
 #  along with Pyrofork.  If not, see <http://www.gnu.org/licenses/>.
 
 from datetime import datetime
-from typing import Optional, List
+from typing import List, Optional
 
 import pyrogram
-from pyrogram import raw
-from pyrogram import types
-from pyrogram import enums
-from pyrogram import utils
+from pyrogram import enums, raw, types, utils
 from ..object import Object
 
 
@@ -122,7 +119,8 @@ class GiftAttribute(Object):
     async def _parse(
         client,
         attr: "raw.base.StarGiftAttribute",
-        users
+        users: dict,
+        chats: dict
     ) -> "GiftAttribute":
         caption = None
         caption_entities = None
@@ -140,8 +138,10 @@ class GiftAttribute(Object):
                 client, attr.message, users
             )).values()
 
-            from_user = types.User._parse(client, users.get(attr.sender_id))
-            to_user = types.User._parse(client, users.get(attr.recipient_id))
+            sender_id = utils.get_raw_peer_id(attr.sender_id)
+            recipient_id = utils.get_raw_peer_id(attr.recipient_id)
+            from_user = types.User._parse(client, users.get(sender_id))
+            to_user = types.User._parse(client, users.get(recipient_id))
 
         return GiftAttribute(
             name=getattr(attr, "name", None),
