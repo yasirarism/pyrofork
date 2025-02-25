@@ -3598,7 +3598,7 @@ class Message(Object, Update):
         quote_entities: List["types.MessageEntity"] = None,
         allow_paid_broadcast: bool = None,
         message_effect_id: int = None,
-        cover: Optional[Union[str, "io.BytesIO"]] = None,
+        cover: Union[str, BinaryIO] = None,
         start_timestamp: int = None,
         schedule_date: datetime = None,
         invert_media: bool = None,
@@ -3705,8 +3705,12 @@ class Message(Object, Update):
             allow_paid_broadcast (``bool``, *optional*):
                 Pass True to allow the message to ignore regular broadcast limits for a small fee; for bots.
 
-            cover (``str`` | :obj:`io.BytesIO`, *optional*):
-                Cover of the video; pass None to skip cover uploading.
+            cover (``str`` | ``BinaryIO``, *optional*):
+                Video cover.
+                Pass a file_id as string to attach a photo that exists on the Telegram servers,
+                pass a HTTP URL as a string for Telegram to get a video from the Internet,
+                pass a file path as string to upload a new photo civer that exists on your local machine, or
+                pass a binary file-like object with its attribute ".name" set for in-memory uploads.
             
             start_timestamp (``int``, *optional*):
                 Timestamp from which the video playing must start, in seconds.
