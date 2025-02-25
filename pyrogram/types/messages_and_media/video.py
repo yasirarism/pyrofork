@@ -116,7 +116,7 @@ class Video(Object):
         video: "raw.types.Document",
         video_attributes: "raw.types.DocumentAttributeVideo",
         file_name: str,
-        ttl_seconds: int = None
+        ttl_seconds: int = None,
         cover = None,
         start_timestamp: int = None
     ) -> "Video":
